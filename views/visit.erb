@@ -5,9 +5,9 @@
 			<form action="/visit" method="POST" role="form">
 			  
 			 <select name="master" class="form-control">
-  				<option>Anton</option>
-  				<option>Lebron</option>
-  				<option>LeSabon</option>
+  				<option <%=@master =='Anton'? 'selected': '' %>>Anton</option>
+  				<option <%=@master =='Lebron'? 'selected': '' %>>Lebron</option>
+  				<option <%=@master =='LeSabon'? 'selected': '' %>>LeSabon</option>
 			</select>
 
 
