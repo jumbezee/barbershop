@@ -1,14 +1,19 @@
 <script type="text/javascript">
+
 $(function() {
-		$('#color').simplecolorpicker();
-		$('#datetimee').datetimepicker();
-		$.datetimepicker.setLocale('ru');
+
+  // тут я могу написать любой javascript код, который исполнится
+  // после загрузки страницы
+
+  $('#color').simplecolorpicker();
+  $('#datetimepicker').datetimepicker();
+
 });
+
 </script>
 
-		<div class="container">
-			<h2><%=@tittle%></h2>
-			<p><%=@message%></p>
+<h2><%=@tittle%></h2>
+<p><%=@message%></p>
 			<form action="/visit" method="POST" role="form">
 			  
 			 <select name="master" class="form-control">
@@ -29,9 +34,10 @@ $(function() {
 			  </div>
 
 			  <div class="form-group">
-			    <label>Когда вас ждать?</label>
-			    <input id="datetimee" name="datetime" type="text" class="form-control" placeholder="Введите вдату и время" value="<%=@datetime%>">
-			  </div>
+    				<label>Когда вас ждать?</label>
+    				<input id="datetimepicker" name="datetime" type="text" class="form-control" placeholder="Введите дату и время" value="<%= @datetime %>">
+  				</div>
+
 			   <div class="form-group">
 			    <label>Какой цвет вы выберите?</label>
 			  <select id="color" value="<%=@color%>">
@@ -51,4 +57,3 @@ $(function() {
 			  </div>
 			  <button type="submit" class="btn btn-primary">Записаться</button>
 			</form>
-			</div>
