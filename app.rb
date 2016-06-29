@@ -26,7 +26,11 @@ configure do
 end
 
 get '/showusers' do
-	erb 'hello'
+	db = get_db
+
+	@results = db.execute 'select * from Users order by id desc'
+
+	erb :showusers
 end
 
 get '/' do
