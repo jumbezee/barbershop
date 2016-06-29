@@ -5,7 +5,10 @@ require 'sinatra/reloader'
 require 'sqlite3'
 
 def get_db
-	return SQLite3::Database.new 'barbershop.db' 
+	db = SQLite3::Database.new 'barbershop.db' 
+	db.results_as_hash = true
+	return db
+
 end
 
 configure do
@@ -22,6 +25,9 @@ configure do
 		)'
 end
 
+get '/showusers' do
+	erb 'hello'
+end
 
 get '/' do
 	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"			
