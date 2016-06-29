@@ -6,16 +6,16 @@ require 'sqlite3'
 
 
 configure do
-	@db = SQLite3::Database.new 'barbershop.db'
-	@db.execute 'CREATE TABLE IF NOT EXISTS 
+	db = get_db
+	db.execute 'CREATE TABLE IF NOT EXISTS 
 		"Users" 
 		(
 			"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
-			"username" VARCHAR, 
-			"phone" VARCHAR, 
-			"datestamp" VARCHAR, 
-			"barber" VARCHAR, 
-			"color" VARCHAR
+			"username" TEXT, 
+			"phone" TEXT, 
+			"datestamp" TEXT,
+			"barber" TEXT, 
+			"color" TEXT
 		)'
 end
 
@@ -39,7 +39,8 @@ post '/visit' do
    	@username = params[:username]                                            
 	@phone = params[:phone]                                                    
 	@datetime = params[:datetime] 
-	@master = params[:master]                                           
+	@master = params[:master]                             
+	@color = params[:color]              
          
     hh = { :username => 'Введите имя', 
     	:phone => 'Введите телефон', 
@@ -53,17 +54,27 @@ post '/visit' do
 		end 
 		
 		@tittle = "Спасибо!"                                                      
-		@message = "Дорогой #{@username},мы ждем тебя в #{@datetime}"
-			 
-
-		f = File.open('./public/contacts.txt','a')                                    
-		f.write "Имя: #{@username}, Телефон: #{@phone}, Дата и время: #{@datetime}, Мастер: #{@master}"
-		f.close   
-		     
+		@message = "Дорогой #{@username},мы ждем тебя в #{@datetime}"     
 	end     
+
+	db = get_db
+		db.execute 'insert into
+		Users
+		(
+			username,
+			phone,
+			datestamp,
+			barber,
+			color
+		)
+		values (?, ?, ?, ?, ?)', [@username, @phone, @datetime, @master, @color]
+	
 	erb :message                                                                              
 end 
 
+def get_db
+	return SQLite3::Database.new 'barbershop.db' 
+end
 
 
 

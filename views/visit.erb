@@ -1,3 +1,10 @@
+<script type="text/javascript">
+$(function() {
+		$('#color').simplecolorpicker();
+		$('#datetimee').datetimepicker();
+		$.datetimepicker.setLocale('ru');
+});
+</script>
 
 		<div class="container">
 			<h2><%=@tittle%></h2>
@@ -23,11 +30,11 @@
 
 			  <div class="form-group">
 			    <label>Когда вас ждать?</label>
-			    <input name="datetime" type="text" class="form-control" placeholder="Введите вдату и время" value="<%=@datetime%>">
+			    <input id="datetimee" name="datetime" type="text" class="form-control" placeholder="Введите вдату и время" value="<%=@datetime%>">
 			  </div>
 			   <div class="form-group">
 			    <label>Какой цвет вы выберите?</label>
-			  <select id="color">
+			  <select id="color" value="<%=@color%>">
 				  <option value="#7bd148">Green</option>
 				  <option value="#5484ed">Bold blue</option>
 				  <option value="#a4bdfc">Blue</option>
@@ -45,8 +52,3 @@
 			  <button type="submit" class="btn btn-primary">Записаться</button>
 			</form>
 			</div>
-<script type="text/javascript">
-$(function() {
-		$('#color').simplecolorpicker();
-});
-</script>
