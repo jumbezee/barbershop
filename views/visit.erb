@@ -17,9 +17,9 @@ $(function() {
 			<form action="/visit" method="POST" role="form">
 			  
 			 <select name="master" class="form-control">
-  				<option <%=@master =='Anton'? 'selected': '' %>>Anton</option>
-  				<option <%=@master =='Lebron'? 'selected': '' %>>Lebron</option>
-  				<option <%=@master =='LeSabon'? 'selected': '' %>>LeSabon</option>
+			<% @barbers.each do |item| %>
+  				<option <%=@master == item['name']? 'selected' : '' %>><%=item['name']%></option>
+  			<% end %>
 			</select>
 
 
